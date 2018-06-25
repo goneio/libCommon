@@ -3,6 +3,7 @@ namespace Segura\SDK\Common\Abstracts;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
+use Segura\SDK\Common\Profiler;
 use Segura\SDK\Dal\Client as SDKClient;
 use Segura\SDK\Dal\Exceptions;
 
@@ -11,16 +12,24 @@ abstract class AbstractAccessLayer
     /** @var SDKClient **/
     protected $sdkClient;
 
+    /** @var Profiler|Profiler\ProfilerInterface */
+    protected $profiler;
+
     /**
      * AbstractAccessLayer constructor.
      *
-     * @param GuzzleClient $guzzleClient
      * @param SDKClient $sdkClient
+     * @param Profiler\ProfilerInterface|Profiler $profiler
      */
     public function __construct(
-        SDKClient $sdkClient
+        SDKClient $sdkClient,
+        Profiler\ProfilerInterface $profiler = null
     ) {
         $this->sdkClient = $sdkClient;
+        if(!$profiler){
+            $profiler = new Profiler();
+        }
+        $this->profiler = $profiler;
     }
 
     /**
@@ -39,6 +48,7 @@ abstract class AbstractAccessLayer
         array $options = []
     ) {
         $endpoint = ltrim($endpoint, "/");
+        $this->profiler->start();
         try {
             return $this->sdkClient->getGuzzle()->request(
                 $method,
