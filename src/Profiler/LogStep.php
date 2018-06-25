@@ -5,12 +5,56 @@ class LogStep
 {
     protected $time;
     protected $method;
+    protected $baseUrl;
     protected $url;
     protected $requestHeaders;
     protected $requestBody;
 
-    static public function Factory(){
+    static public function Factory()
+    {
         return new self();
+    }
+
+    public function __toArray() : array
+    {
+        return [
+            'Time'   => $this->getTime(),
+            'Url'    => $this->getUrl(),
+            'Method' => $this->getMethod(),
+            'Curl'   => $this->getCurl(),
+        ];
+    }
+
+    public function getCurl() : string
+    {
+        $curl = "curl -X {$this->getMethod()} ";
+        $curl.= "{$this->getBaseUrl()}/{$this->getUrl()} ";
+        foreach($this->getRequestHeaders() as $header => $value){
+            $curl.= "-H '{$header}: {$value}' ";
+        }
+        if($this->getRequestBody()){
+            $curl.= "-d '{$this->getRequestBody()}' ";
+        }
+
+        return $curl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * @param mixed $baseUrl
+     * @return LogStep
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->baseUrl = $baseUrl;
+        return $this;
     }
 
     /**

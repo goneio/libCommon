@@ -48,15 +48,16 @@ abstract class AbstractAccessLayer
         array $options = []
     ) {
         $endpoint = ltrim($endpoint, "/");
+
         $this->profiler->start();
+
         try {
-            return $this->sdkClient->getGuzzle()->request(
+            $response = $this->sdkClient->getGuzzle()->request(
                 $method,
                 $endpoint,
                 array_merge_recursive(
                     [
                         'headers' => [
-                            'User-Agent' => 'libDal/dev-master',
                             'Accept'     => 'application/json',
                             'Content-Type' => 'application/json',
                         ]
@@ -64,6 +65,15 @@ abstract class AbstractAccessLayer
                     $options
                 )
             );
+
+            $this->profiler->stop(
+                $this->sdkClient->getGuzzle(),
+                $method,
+                $endpoint,
+                $options
+            );
+
+            return $response;
         } catch (ServerException $serverException) {
             throw new Exceptions\SDKException(
                 "Server Exception:\n" .
