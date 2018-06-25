@@ -1,5 +1,5 @@
 <?php
-namespace Segura\SDK\Dal\Abstracts;
+namespace Segura\SDK\Common\Abstracts;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;

@@ -1,5 +1,5 @@
 <?php
-namespace Segura\SDK\Dal\Abstracts;
+namespace Segura\SDK\Common\Abstracts;
 
 use GuzzleHttp\Client as GuzzleClient;
 
@@ -11,7 +11,7 @@ abstract class AbstractClient
     /** @var string */
     protected $baseUrl;
 
-    public function __construct($baseUrl = "http://dal.segurasystems.test")
+    public function __construct($baseUrl)
     {
         $this->setBaseUrl($baseUrl);
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Segura\SDK\Dal\Abstracts;
+namespace Segura\SDK\Common\Abstracts;
 
 abstract class AbstractModel
 {
