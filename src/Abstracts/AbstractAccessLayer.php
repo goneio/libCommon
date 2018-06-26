@@ -4,8 +4,8 @@ namespace Segura\SDK\Common\Abstracts;
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 use Segura\SDK\Common\Profiler;
-use Segura\SDK\Dal\Client as SDKClient;
-use Segura\SDK\Dal\Exceptions;
+use Segura\SDK\Common\Abstracts\AbstractClient as SDKClient;
+use Segura\SDK\Common\Exceptions;
 
 abstract class AbstractAccessLayer
 {
