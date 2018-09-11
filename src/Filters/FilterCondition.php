@@ -12,6 +12,7 @@ class FilterCondition implements \JsonSerializable
     const CONDITION_GREATER_THAN_OR_EQUAL = '>=';
     const CONDITION_LESS_THAN_OR_EQUAL = '<=';
     const CONDITION_LIKE = 'LIKE';
+    const CONDITION_IN = 'IN';
 
     protected $column;
     protected $value;
@@ -87,6 +88,7 @@ class FilterCondition implements \JsonSerializable
             case self::CONDITION_GREATER_THAN_OR_EQUAL:
             case self::CONDITION_LESS_THAN_OR_EQUAL:
             case self::CONDITION_LIKE:
+            case self::CONDITION_IN:
                 break;
             default:
                 throw new FilterConditionNotFoundException("Unsupported condition: '{$condition}");
