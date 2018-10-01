@@ -52,7 +52,7 @@ class Profiler implements ProfilerInterface
         $debug['Time'] = 0;
         foreach(self::$log as $logStep){
             $debug['Time'] += $logStep->getTime();
-            $debug['Requests'] = $logStep->__toArray();
+            $debug['Requests'][] = $logStep->__toArray();
         }
         return $debug;
     }
