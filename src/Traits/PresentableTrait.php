@@ -14,7 +14,7 @@ trait PresentableTrait
                 if(is_array($currentValue)){
                     $presentableValue = [];
                     foreach($currentValue as $index => $value) {
-                        if(in_array(PresentableTrait::class, class_uses($value))) {
+                        if(is_object($value) && in_array(PresentableTrait::class, class_uses($value))) {
                             $presentableValue[$index] = $value->__toArray();
                         }else{
                             $presentableValue[$index] = $value;
