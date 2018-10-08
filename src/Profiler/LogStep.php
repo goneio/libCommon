@@ -17,12 +17,14 @@ class LogStep
 
     public function __toArray() : array
     {
-        return [
-            'Time'   => $this->getTime(),
-            'Url'    => $this->getUrl(),
-            'Method' => $this->getMethod(),
-            'Curl'   => $this->getCurl(),
-        ];
+        return array_filter([
+            'Time'    => $this->getTime(),
+            'Url'     => $this->getUrl(),
+            'Method'  => $this->getMethod(),
+            'Curl'    => $this->getCurl(),
+            'Headers' => $this->getRequestHeaders(),
+            'Body'    => $this->getRequestBody(),
+        ]);
     }
 
     public function getCurl() : string

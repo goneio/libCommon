@@ -3,7 +3,49 @@ namespace Segura\SDK\Common\Abstracts;
 
 abstract class AbstractModel
 {
+    /** @var AbstractClient */
     protected $sdkClient;
+
+    /** @var array */
+    protected $dirtyKeys;
+
+    /**
+     * @return AbstractClient
+     */
+    public function getSdkClient(): AbstractClient
+    {
+        return $this->sdkClient;
+    }
+
+    /**
+     * @param AbstractClient $sdkClient
+     * @return AbstractModel
+     */
+    public function setSdkClient(AbstractClient $sdkClient): self
+    {
+        $this->sdkClient = $sdkClient;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDirtyKeys()
+    {
+        return $this->dirtyKeys;
+    }
+
+    /**
+     * @param mixed $dirtyKeys
+     * @return AbstractModel
+     */
+    public function setDirtyKeys($dirtyKeys) : self
+    {
+        $this->dirtyKeys = $dirtyKeys;
+        return $this;
+    }
+
+
 
     public function __construct(AbstractClient $sdkClient, array $raw = null)
     {
