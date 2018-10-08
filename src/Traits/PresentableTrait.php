@@ -1,9 +1,11 @@
 <?php
 namespace Segura\SDK\Common\Traits;
 
+use Segura\SDK\Common\Exceptions\ObjectNotCompactableException;
+
 trait PresentableTrait
 {
-    public function __toArray() : array
+    public function __toArray(array $compactableElements = []) : array
     {
         $array = [];
         foreach (get_object_vars($this) as $property => $junk) {
@@ -15,7 +17,11 @@ trait PresentableTrait
                     $presentableValue = [];
                     foreach($currentValue as $index => $value) {
                         if(is_object($value) && in_array(PresentableTrait::class, class_uses($value))) {
-                            $presentableValue[$index] = $value->__toArray();
+                            if(in_array($property, $compactableElements)) {
+                                $presentableValue[$index] = $value->__toCompactArray();
+                            } else {
+                                $presentableValue[$index] = $value->__toArray();
+                            }
                         }else{
                             $presentableValue[$index] = $value;
                         }
@@ -28,5 +34,13 @@ trait PresentableTrait
         }
 
         return array_merge($array);
+    }
+
+    public function __toCompactArray() : array
+    {
+        if(!(method_exists($this, 'getId') && method_exists($this,'getName'))){
+            throw new ObjectNotCompactableException("Object " . get_called_class() . " is not compactable - It doesn't have a getId() and getName() method!");
+        }
+        return [$this->getId() => $this->getName()];
     }
 }
