@@ -86,12 +86,15 @@ class FilterCondition implements \JsonSerializable
     {
         switch ($condition) {
             case self::CONDITION_EQUAL:
+            case self::CONDITION_NOT_EQUAL:
             case self::CONDITION_GREATER_THAN:
             case self::CONDITION_LESS_THAN:
             case self::CONDITION_GREATER_THAN_OR_EQUAL:
             case self::CONDITION_LESS_THAN_OR_EQUAL:
             case self::CONDITION_LIKE:
+            case self::CONDITION_NOT_LIKE:
             case self::CONDITION_IN:
+            case self::CONDITION_NOT_IN:
                 break;
             default:
                 throw new FilterConditionNotFoundException("Unsupported condition: '{$condition}");
