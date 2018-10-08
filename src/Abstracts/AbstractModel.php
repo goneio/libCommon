@@ -7,25 +7,7 @@ abstract class AbstractModel
     protected $sdkClient;
 
     /** @var array */
-    protected $dirtyKeys;
-
-    /**
-     * @return AbstractClient
-     */
-    public function getSdkClient(): AbstractClient
-    {
-        return $this->sdkClient;
-    }
-
-    /**
-     * @param AbstractClient $sdkClient
-     * @return AbstractModel
-     */
-    public function setSdkClient(AbstractClient $sdkClient): self
-    {
-        $this->sdkClient = $sdkClient;
-        return $this;
-    }
+    private $dirtyKeys;
 
     /**
      * @return mixed

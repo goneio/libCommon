@@ -7,7 +7,7 @@ class LogStep
     protected $method;
     protected $baseUrl;
     protected $url;
-    protected $requestHeaders;
+    protected $requestHeaders = [];
     protected $requestBody;
 
     static public function Factory()
@@ -31,15 +31,11 @@ class LogStep
     {
         $curl = "curl -X {$this->getMethod()} ";
         $curl.= "{$this->getBaseUrl()}/{$this->getUrl()} ";
-        if(is_array($this->getRequestHeaders())){
-            foreach ($this->getRequestHeaders() as $header => $value) {
-                $curl .= "-H '{$header}: {$value}' ";
-            }
+        foreach ($this->getRequestHeaders() as $header => $value) {
+            $curl .= "-H '{$header}: {$value}' ";
         }
-        if(is_array($this->getRequestBody())) {
-            if ($this->getRequestBody()) {
-                $curl .= "-d '{$this->getRequestBody()}' ";
-            }
+        if ($this->getRequestBody()) {
+            $curl .= "-d '{$this->getRequestBody()}' ";
         }
         return $curl;
     }
