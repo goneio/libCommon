@@ -45,7 +45,30 @@ abstract class AbstractModel
         return $this;
     }
 
+    /**
+     * @param string $key
+     * @return AbstractModel
+     */
+    public function addDirtyKey(string $key) : self
+    {
+        $this->dirtyKeys[] = $key;
+        return $this;
+    }
 
+    public function __toUpsertArray() : array
+    {
+        if(in_array('Id', $this->__toArray())) {
+            $updateArray = [];
+            foreach ($this->__toArray() as $key => $value) {
+                if (in_array($key, $this->getDirtyKeys()) || $key == 'Id') {
+                    $updateArray[$key] = $value;
+                }
+            }
+            return $updateArray;
+        } else {
+            return $this->__toArray();
+        }
+    }
 
     public function __construct(AbstractClient $sdkClient, array $raw = null)
     {
