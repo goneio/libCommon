@@ -87,4 +87,17 @@ abstract class AbstractModel
         }
         return false;
     }
+
+    /**
+     * Convenience function to create/update the current model.
+     */
+    public function save()
+    {
+        return $this->getAccessLayer()->createFromObject($this);
+    }
+
+    public function delete()
+    {
+        return $this->getAccessLayer()->delete($this->getId());
+    }
 }
