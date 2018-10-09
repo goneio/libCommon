@@ -11,6 +11,9 @@ abstract class AbstractClient
     /** @var string */
     protected $baseUrl;
 
+    /** @var array */
+    protected $extraHeaders = [];
+
     public function __construct($baseUrl)
     {
         $this->setBaseUrl($baseUrl);
@@ -40,14 +43,22 @@ abstract class AbstractClient
         return $this->guzzle;
     }
 
+    public function addExtraHeader($name, $value){
+        $this->extraHeaders[$name] = $value;
+        $this->setUpGuzzle();
+    }
+
     private function setUpGuzzle() : void
     {
         $this->guzzle = new GuzzleClient([
             'base_uri' => $this->getBaseUrl(),
             'timeout'  => 30.0,
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
+            'headers' => array_merge(
+                [
+                    'Accept' => 'application/json'
+                ],
+                $this->extraHeaders
+            )
         ]);
     }
 }
