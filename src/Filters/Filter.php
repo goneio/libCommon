@@ -59,12 +59,12 @@ class Filter
 
     /**
      * @param string $column
-     * @param string $value
+     * @param string|array|int $value
      * @param string $condition
      *
      * @return $this
      */
-    public function addWhere(string $column, string $value, string $condition = '=')
+    public function addWhere(string $column, $value, string $condition = '=')
     {
         $this->wheres[] = new FilterCondition($column, $value, $condition);
         return $this;
