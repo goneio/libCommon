@@ -1,5 +1,5 @@
 <?php
-namespace Segura\SDK\Common\Profiler;
+namespace Gone\SDK\Common\Profiler;
 
 class LogStep
 {

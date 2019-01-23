@@ -1,11 +1,11 @@
 <?php
-namespace Segura\SDK\Common\Abstracts;
+namespace Gone\SDK\Common\Abstracts;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
-use Segura\SDK\Common\Profiler;
-use Segura\SDK\Common\Abstracts\AbstractClient as SDKClient;
-use Segura\SDK\Common\Exceptions;
+use Gone\SDK\Common\Profiler;
+use Gone\SDK\Common\Abstracts\AbstractClient as SDKClient;
+use Gone\SDK\Common\Exceptions;
 
 abstract class AbstractAccessLayer
 {

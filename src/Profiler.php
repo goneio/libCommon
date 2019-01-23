@@ -1,9 +1,9 @@
 <?php
-namespace Segura\SDK\Common;
+namespace Gone\SDK\Common;
 
 use GuzzleHttp\Client as GuzzleClient;
-use Segura\SDK\Common\Profiler\LogStep;
-use Segura\SDK\Common\Profiler\ProfilerInterface;
+use Gone\SDK\Common\Profiler\LogStep;
+use Gone\SDK\Common\Profiler\ProfilerInterface;
 
 class Profiler implements ProfilerInterface
 {

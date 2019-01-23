@@ -1,5 +1,5 @@
 <?php
-namespace Segura\SDK\Common\Exceptions;
+namespace Gone\SDK\Common\Exceptions;
 
 class ObjectNotFoundException extends SDKException
 {

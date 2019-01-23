@@ -1,8 +1,8 @@
 <?php
 
-namespace Segura\SDK\Common\Filters;
+namespace Gone\SDK\Common\Filters;
 
-use Segura\SDK\Common\Exceptions\FilterConditionNotFoundException;
+use Gone\SDK\Common\Exceptions\FilterConditionNotFoundException;
 
 class FilterCondition implements \JsonSerializable
 {

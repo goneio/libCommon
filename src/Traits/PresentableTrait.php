@@ -1,7 +1,7 @@
 <?php
-namespace Segura\SDK\Common\Traits;
+namespace Gone\SDK\Common\Traits;
 
-use Segura\SDK\Common\Exceptions\ObjectNotCompactableException;
+use Gone\SDK\Common\Exceptions\ObjectNotCompactableException;
 
 trait PresentableTrait
 {

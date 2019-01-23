@@ -1,6 +1,6 @@
 <?php
 
-namespace Segura\SDK\Common\Filters;
+namespace Gone\SDK\Common\Filters;
 
 class Filter
 {
